@@ -1,0 +1,22 @@
+.search-form {
+    padding: 20px;
+}
+
+.cocktail-pane-container {
+    display: flex;
+}
+
+.cocktail-pane {
+    border: 1px solid black;
+    width: 25%;
+    max-height: 300px;
+    padding: 20px;
+    margin: 20px;
+    display: flex;
+}
+
+img {
+    max-width: 100%;
+    max-height: 100%;
+    padding: 20px;
+}

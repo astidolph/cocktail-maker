@@ -1,0 +1,56 @@
+[
+    {
+        "name": "Whisky Sour",
+        "image": "./whisky_sour.png",
+        "imageAlt": "whisky sour",
+        "ingredients": [
+            {
+                "name": "Egg",
+                "quantity": "1"
+            },
+            {
+                "name": "Bourbon Whisky",
+                "quantity": "50ml"
+            },
+            {
+                "name": "Lemon Juice",
+                "quantity": "35ml"
+            }, 
+            {
+                "name": "Simple Syrup",
+                "quantity": "12ml"
+            },
+            {
+                "name": "Angostura Bitters",
+                "quantity": "2 dashes"
+            }
+        ]
+    },
+    {
+        "name": "Old Fashioned",
+        "image": "./old_fashioned.png",
+        "imageAlt": "old fashioned",
+        "ingredients": [
+            {
+                "name": "Bourbon Whisky",
+                "quantity": "50ml"
+            },
+            {
+                "name": "Sugar Cube",
+                "quantity": "1"
+            }, 
+            {
+                "name": "Simple Syrup",
+                "quantity": "12ml"
+            },
+            {
+                "name": "Angostura Bitters",
+                "quantity": "2 dashes"
+            },            
+            {
+                "name": "Orange",
+                "quantity": "1"
+            }
+        ]
+    }
+]
