@@ -6,7 +6,7 @@ import {SearchForm} from './components/searchForm';
 export const App = () => {
   const [cocktails, setCocktails] = useState([]);
 
-  const handleSetCocktails = (event, cocktails) => {
+  const handleSetCocktails = (cocktails) => {
     setCocktails(cocktails);
   }
 
