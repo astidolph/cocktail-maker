@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { FilterEntry } from "./FilterEntry";
 
 export const SearchForm = (props) => {
   const [ingredient, setIngredientText] = useState("");
@@ -38,14 +39,5 @@ export const SearchForm = (props) => {
         <FilterEntry filterValue={il} onClick={removeFilterValue} />
       ))}
     </div>
-  );
-};
-
-export const FilterEntry = (props) => {
-  return (
-    <span>
-      {props.filterValue}{" "}
-      <span onClick={(_) => props.onClick(props.filterValue)}>x</span>
-    </span>
   );
 };
