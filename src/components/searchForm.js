@@ -1,43 +1,20 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
-export const SearchForm = ({ cocktails }) => {
+export const SearchForm = (props) => {
   const [ingredient, setIngredientText] = useState("");
   const [ingredientList, setIngredientList] = useState([]);
-  const [cocktailData, setCocktailData] = useState([]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const response = await fetch("./cocktails.json");
-      const json = await response.json();
-      setCocktailData(json);
-    };
-
-    fetchData().catch(console.error);
-  }, []);
-
-  const filteredCocktailList = () => {
-    if (ingredientList.length === 0) {
-      return cocktailData;
-    } else {
-      let filteredCocktails = cocktailData.filter((c) =>
-        c.ingredients.some((ci) =>
-          ingredientList
-            .map((il) => il.toLowerCase())
-            .includes(ci.name.toLowerCase())
-        )
-      );
-      return filteredCocktails;
-    }
-  };
 
   const addIngredientToFilter = (oldIngredients) => {
-    let newIngredientList = [...oldIngredients, ingredient];
+    let filteredIngredientList = [...oldIngredients, ingredient];
+    props.ingredientList(filteredIngredientList);
     setIngredientText("");
-    return newIngredientList;
+    return filteredIngredientList;
   };
 
   const removeFilterValue = (value) => {
-    setIngredientList(ingredientList.filter((i) => i !== value));
+    let filteredIngredientList = ingredientList.filter((i) => i !== value);
+    setIngredientList(filteredIngredientList);
+    props.ingredientList(filteredIngredientList);
   };
 
   return (
@@ -57,7 +34,6 @@ export const SearchForm = ({ cocktails }) => {
       >
         Add Ingredient
       </button>
-      <button onClick={(_) => cocktails(filteredCocktailList)}>Search</button>
       {ingredientList.map((il) => (
         <FilterEntry filterValue={il} onClick={removeFilterValue} />
       ))}
