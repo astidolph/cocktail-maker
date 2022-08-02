@@ -51,7 +51,7 @@ export const App = () => {
   return (
     <div className="App">
       <SearchForm
-        ingredientFilterValues={handleSetIngredients}
+        selectedIngredients={handleSetIngredients}
         allIngredients={ingredientData}
       />
       <div className="cocktail-pane-container">

@@ -2,27 +2,36 @@ import { useEffect, useState } from "react";
 import { FilterEntry } from "./FilterEntry";
 
 export const SearchForm = (props) => {
-  const [ingredient, setIngredientText] = useState("");
-  const [ingredientFilterValues, setIngredientFilterValues] = useState([]);
+  const [ingredientText, setIngredientText] = useState("");
+  const [selectedIngredients, setIngredientFilterValues] = useState([]);
   const [allIngredients, setAllIngredients] = useState([]);
+  const [filteredIngredients, setFilteredIngredients] = useState([]);
 
   useEffect(() => {
     setAllIngredients(props.allIngredients);
+    setFilteredIngredients(props.allIngredients);
   }, [props]);
 
   const addIngredientToFilter = (oldIngredients) => {
-    let filteredIngredientValues = [...oldIngredients, ingredient];
-    props.ingredientFilterValues(filteredIngredientValues);
+    let filteredIngredientValues = [...oldIngredients, ingredientText];
+    props.selectedIngredients(filteredIngredientValues);
     setIngredientText("");
     return filteredIngredientValues;
   };
 
-  const removeFilterValue = (value) => {
-    let filteredIngredientList = ingredientFilterValues.filter(
-      (i) => i !== value
+  const filterIngredientSelection = (textValue) => {
+    setIngredientText(textValue);
+    setFilteredIngredients(
+      allIngredients.filter((i) =>
+        i.toLowerCase().startsWith(textValue.toLowerCase())
+      )
     );
+  };
+
+  const removeFilterValue = (value) => {
+    let filteredIngredientList = selectedIngredients.filter((i) => i !== value);
     setIngredientFilterValues(filteredIngredientList);
-    props.ingredientFilterValues(filteredIngredientList);
+    props.selectedIngredients(filteredIngredientList);
   };
 
   return (
@@ -30,12 +39,16 @@ export const SearchForm = (props) => {
       <h2>What ingredients do you have?</h2>
       <input
         type="text"
-        value={ingredient}
-        onChange={(e) => setIngredientText(e.target.value)}
+        value={ingredientText}
+        onChange={(e) => filterIngredientSelection(e.target.value)}
       />
-      {allIngredients.map((i) => (
-        <span>{i}</span>
-      ))}
+      {ingredientText !== "" && (
+        <ul>
+          {filteredIngredients.map((i) => (
+            <li>{i}</li>
+          ))}
+        </ul>
+      )}
       <button
         onClick={(_) =>
           setIngredientFilterValues((oldIngredients) =>
@@ -45,7 +58,7 @@ export const SearchForm = (props) => {
       >
         Add Ingredient
       </button>
-      {ingredientFilterValues.map((il) => (
+      {selectedIngredients.map((il) => (
         <FilterEntry filterValue={il} onClick={removeFilterValue} />
       ))}
     </div>
