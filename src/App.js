@@ -6,9 +6,14 @@ import { SearchForm } from "./components/searchForm";
 export const App = () => {
   const [cocktailData, setCocktailData] = useState([]);
   const [filteredCocktails, setFilteredCocktails] = useState([]);
+  const [ingredientData, setIngredientData] = useState([]);
 
   const handleSetIngredients = (ingredients) => {
     setFilteredCocktails(filteredCocktailList(ingredients));
+  };
+
+  const getIngredientsFromCocktails = (cocktailList) => {
+    return cocktailList.map((c) => c.ingredients);
   };
 
   useEffect(() => {
@@ -17,6 +22,7 @@ export const App = () => {
       const json = await response.json();
       setCocktailData(json);
       setFilteredCocktails(json);
+      setIngredientData(getIngredientsFromCocktails(json));
     };
     fetchData().catch(console.error);
   }, []);
@@ -38,7 +44,10 @@ export const App = () => {
 
   return (
     <div className="App">
-      <SearchForm ingredientList={handleSetIngredients} />
+      <SearchForm
+        ingredientFilterValues={handleSetIngredients}
+        ingredientData={ingredientData}
+      />
       <div className="cocktail-pane-container">
         {filteredCocktails.map((value, idx) => (
           <CocktailPane key={idx} cocktail={value} />

@@ -3,19 +3,21 @@ import { FilterEntry } from "./FilterEntry";
 
 export const SearchForm = (props) => {
   const [ingredient, setIngredientText] = useState("");
-  const [ingredientList, setIngredientList] = useState([]);
+  const [ingredientFilterValues, setIngredientFilterValues] = useState([]);
 
   const addIngredientToFilter = (oldIngredients) => {
-    let filteredIngredientList = [...oldIngredients, ingredient];
-    props.ingredientList(filteredIngredientList);
+    let filteredIngredientValues = [...oldIngredients, ingredient];
+    props.ingredientFilterValues(filteredIngredientValues);
     setIngredientText("");
-    return filteredIngredientList;
+    return filteredIngredientValues;
   };
 
   const removeFilterValue = (value) => {
-    let filteredIngredientList = ingredientList.filter((i) => i !== value);
-    setIngredientList(filteredIngredientList);
-    props.ingredientList(filteredIngredientList);
+    let filteredIngredientList = ingredientFilterValues.filter(
+      (i) => i !== value
+    );
+    setIngredientFilterValues(filteredIngredientList);
+    props.ingredientFilterValues(filteredIngredientList);
   };
 
   return (
@@ -28,14 +30,14 @@ export const SearchForm = (props) => {
       />
       <button
         onClick={(_) =>
-          setIngredientList((oldIngredients) =>
+          setIngredientFilterValues((oldIngredients) =>
             addIngredientToFilter(oldIngredients)
           )
         }
       >
         Add Ingredient
       </button>
-      {ingredientList.map((il) => (
+      {ingredientFilterValues.map((il) => (
         <FilterEntry filterValue={il} onClick={removeFilterValue} />
       ))}
     </div>
