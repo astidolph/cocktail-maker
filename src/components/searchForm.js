@@ -1,9 +1,14 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FilterEntry } from "./FilterEntry";
 
 export const SearchForm = (props) => {
   const [ingredient, setIngredientText] = useState("");
   const [ingredientFilterValues, setIngredientFilterValues] = useState([]);
+  const [allIngredients, setAllIngredients] = useState([]);
+
+  useEffect(() => {
+    setAllIngredients(props.allIngredients);
+  }, [props]);
 
   const addIngredientToFilter = (oldIngredients) => {
     let filteredIngredientValues = [...oldIngredients, ingredient];
@@ -28,6 +33,9 @@ export const SearchForm = (props) => {
         value={ingredient}
         onChange={(e) => setIngredientText(e.target.value)}
       />
+      {allIngredients.map((i) => (
+        <span>{i}</span>
+      ))}
       <button
         onClick={(_) =>
           setIngredientFilterValues((oldIngredients) =>

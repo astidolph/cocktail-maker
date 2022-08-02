@@ -13,7 +13,13 @@ export const App = () => {
   };
 
   const getIngredientsFromCocktails = (cocktailList) => {
-    return cocktailList.map((c) => c.ingredients);
+    let allIngredients = [];
+    cocktailList.forEach((c) => {
+      c.ingredients.forEach((i) => {
+        allIngredients.push(i.name);
+      });
+    });
+    return [...new Set(allIngredients)];
   };
 
   useEffect(() => {
@@ -46,7 +52,7 @@ export const App = () => {
     <div className="App">
       <SearchForm
         ingredientFilterValues={handleSetIngredients}
-        ingredientData={ingredientData}
+        allIngredients={ingredientData}
       />
       <div className="cocktail-pane-container">
         {filteredCocktails.map((value, idx) => (
