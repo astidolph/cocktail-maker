@@ -5,9 +5,7 @@ export const CocktailPane = ({ cocktail }) => {
         <h3>{cocktail.name}</h3>
         {cocktail.ingredients.map((i) => (
           <ul>
-            <li>
-              {i.name} ({i.quantity})
-            </li>
+            <li>{i.name}</li>
           </ul>
         ))}
       </div>

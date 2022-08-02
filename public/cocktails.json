@@ -2,7 +2,7 @@
     {
         "name": "Whisky Sour",
         "image": "./whisky_sour.png",
-        "imageAlt": "whisky sour",
+        "imageAlt": "whisky sour cocktail",
         "ingredients": [
             {
                 "name": "Egg",
@@ -29,7 +29,7 @@
     {
         "name": "Old Fashioned",
         "image": "./old_fashioned.png",
-        "imageAlt": "old fashioned",
+        "imageAlt": "old fashioned cocktail",
         "ingredients": [
             {
                 "name": "Bourbon Whisky",
@@ -50,6 +50,56 @@
             {
                 "name": "Orange",
                 "quantity": "1"
+            }
+        ]
+    },
+    {
+        "name": "Manhattan",
+        "image": "./manhattan.jpg",
+        "imageAlt": "manhattan cocktail",
+        "ingredients": [
+            {
+                "name": "Rye Whisky",
+                "quantity": "60ml"
+            },
+            {
+                "name": "Vermouth",
+                "quantity": "30ml"
+            }, 
+            {
+                "name": "Orange Bitters",
+                "quantity": "1 dash"
+            },
+            {
+                "name": "Angostura Bitters",
+                "quantity": "2 dashes"
+            }
+        ]
+    },
+    {
+        "name": "Mojito",
+        "image": "./mojito.jpg",
+        "imageAlt": "mojito cocktail",
+        "ingredients": [
+            {
+                "name": "Lime",
+                "quantity": "1"
+            },
+            {
+                "name": "Granulated Sugar",
+                "quantity": "1 tsp"
+            }, 
+            {
+                "name": "Mint Leaves",
+                "quantity": "Small handful"
+            },
+            {
+                "name": "White Rum",
+                "quantity": "60ml"
+            }, 
+            {
+                "name": "Soda Water",
+                "quantity": "To taste"
             }
         ]
     }
