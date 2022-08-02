@@ -12,8 +12,8 @@ export const SearchForm = (props) => {
     setFilteredIngredients(props.allIngredients);
   }, [props]);
 
-  const addIngredientToFilter = (oldIngredients) => {
-    let filteredIngredientValues = [...oldIngredients, ingredientText];
+  const addIngredientToFilter = (oldIngredients, newIngredient) => {
+    let filteredIngredientValues = [...oldIngredients, newIngredient];
     props.selectedIngredients(filteredIngredientValues);
     setIngredientText("");
     return filteredIngredientValues;
@@ -45,19 +45,18 @@ export const SearchForm = (props) => {
       {ingredientText !== "" && (
         <ul>
           {filteredIngredients.map((i) => (
-            <li>{i}</li>
+            <li
+              onClick={(_) =>
+                setIngredientFilterValues((oldIngredients) =>
+                  addIngredientToFilter(oldIngredients, i)
+                )
+              }
+            >
+              {i}
+            </li>
           ))}
         </ul>
       )}
-      <button
-        onClick={(_) =>
-          setIngredientFilterValues((oldIngredients) =>
-            addIngredientToFilter(oldIngredients)
-          )
-        }
-      >
-        Add Ingredient
-      </button>
       {selectedIngredients.map((il) => (
         <FilterEntry filterValue={il} onClick={removeFilterValue} />
       ))}
