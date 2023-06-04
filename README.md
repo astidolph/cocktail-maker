@@ -1,4 +1,6 @@
-# Getting Started with Create React App
+# Cocktail Maker
+
+App to aid in making cocktails based on a search of ingredients, search for ingredients you have and then see relevant recipes.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
